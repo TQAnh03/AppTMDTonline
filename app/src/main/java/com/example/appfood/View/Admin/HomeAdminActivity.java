@@ -7,12 +7,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.appfood.R;
 import com.example.appfood.dangsanphamActivity;
 
 public class HomeAdminActivity  extends AppCompatActivity implements View.OnClickListener {
-    private ImageView imgdangsanpham;
+    private CardView imgdangsanpham;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,6 @@ public class HomeAdminActivity  extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.cHoaDon: startActivity(new Intent( HomeAdminActivity.this,BillADMiNActivity.class));break;
-
             case R.id.cThongKe: startActivity(new Intent( HomeAdminActivity.this,ChartBillActivity.class));break;
             case R.id.cSignOut: finish();break;
             case R.id.imgdangsanpham: startActivity(new Intent( HomeAdminActivity.this, ProductActivity.class));break;

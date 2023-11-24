@@ -85,8 +85,8 @@ public class SanPhamAdapter  extends RecyclerView.Adapter<MyViewHolder> {
             }
         });
         if(type==1){
-            holder.txtbaohanh.setText(sanPhamModels.getTrongluong());
-            holder.txtsoluong.setText(sanPhamModels.getSoluong()+"");
+//            holder.txtbaohanh.setText(sanPhamModels.getTrongluong());
+            holder.txtsoluong.setText("Số lượng: "+sanPhamModels.getSoluong()+"");
         }
 
     }
@@ -112,6 +112,7 @@ class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListe
         txtgiasp= itemView.findViewById(R.id.txtgiatien);
         txttensp= itemView.findViewById(R.id.txttensp);
         hinhanh= itemView.findViewById(R.id.hinhanh);
+        txtsoluong = itemView.findViewById(R.id.txtsoluong);
         itemView.setOnClickListener(this);
     }
     public  void  SetOnItem(SetOnItemClick itemClick){

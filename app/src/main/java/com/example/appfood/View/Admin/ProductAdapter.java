@@ -54,8 +54,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 context.startActivityForResult(intent, 100);
             }
         });
-        holder.txtbaohanh.setText(sanPhamModels.getTrongluong());
-        holder.txtsoluong.setText(sanPhamModels.getSoluong() + "");
+//        holder.txtbaohanh.setText(sanPhamModels.getTrongluong());
+//        holder.txtsoluong.setText(sanPhamModels.getSoluong() + "");
     }
 
     @Override
