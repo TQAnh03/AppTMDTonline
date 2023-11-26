@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,7 +66,8 @@ public class FragMent_ProFile  extends Fragment implements  View.OnClickListener
         txtmail=view.findViewById(R.id.txtemail);
         db= FirebaseFirestore.getInstance();
         txtmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        db.collection("thongtinUser").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        db.collection("thongtinUser")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("Profile")
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -207,6 +209,7 @@ public class FragMent_ProFile  extends Fragment implements  View.OnClickListener
         dialog.show();
         EditText editvalue = dialog.findViewById(R.id.editvalue);
         Button btnxacnhan = dialog.findViewById(R.id.btnxacnhan);
+        ImageView imgcancel = dialog.findViewById(R.id.cancel);
         switch (i){
             case  1: editvalue.setHint("Nhập họ tên");break;
             case  2:
@@ -214,6 +217,13 @@ public class FragMent_ProFile  extends Fragment implements  View.OnClickListener
                 editvalue.setHint("Nhập số điện thoại");break;
             case  3: editvalue.setHint("Nhập dịa chỉ");break;
         }
+
+        imgcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
         btnxacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -224,9 +234,6 @@ public class FragMent_ProFile  extends Fragment implements  View.OnClickListener
                         case 1: keys ="hoten";break;
                         case 2: keys ="sdt";break;
                         case 3: keys ="diachi";break;
-
-
-
                     }
                     db.collection("thongtinUser").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .collection("Profile").document(key)
@@ -239,7 +246,6 @@ public class FragMent_ProFile  extends Fragment implements  View.OnClickListener
                                             case  2: txtsdt.setText(value);break;
                                             case  3: txtdiachi.setText(value);break;
                                         }
-
                                     }
                                     dialog.cancel();
                                 }
