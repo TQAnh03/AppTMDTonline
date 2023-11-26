@@ -53,6 +53,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
     private  String s[]={"Thanh toán khi nhận hàng","Thanh toán MOMO"};
     private  long tongtien = 0;
     private ProgressBar progressBar;
+    private TextView txtnoidung;
     private  String hoten="",diachi="",sdt="";
     private  Spinner spinner;
     private  int check =  0 ;
@@ -71,6 +72,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
         arrayList = new ArrayList<>();
         gioHangPreSenter = new GioHangPreSenter(this);
         gioHangPreSenter.HandlegetDataGioHang();
+        //Thanh toan
         btnthanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,6 +180,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
 
                             }
                             progressBar.setVisibility(View.VISIBLE);
+                            txtnoidung.setVisibility(View.GONE);
 
                         }else{
                             Toast.makeText(CartActivity.this, "Số điện thoại không để trống", Toast.LENGTH_SHORT).show();
@@ -201,6 +204,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
         rcVBill = findViewById(R.id.rcvBill);
         btnthanhtoan = findViewById(R.id.btnthanhtoan);
         progressBar= findViewById(R.id.progressbar);
+        txtnoidung = findViewById(R.id.txtnoidung);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -221,6 +225,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
            Toast.makeText(CartActivity.this, "Thao tác thành công!", Toast.LENGTH_SHORT).show();
        }
         progressBar.setVisibility(View.GONE);
+       txtnoidung.setVisibility(View.GONE);
         sanPhamAdapter.notifyDataSetChanged();
 
 
@@ -230,6 +235,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
     public void OnFail() {
         Toast.makeText(CartActivity.this, "Đặt Hàng thất bại !", Toast.LENGTH_SHORT).show();
         progressBar.setVisibility(View.GONE);
+        txtnoidung.setVisibility(View.GONE);
     }
 
     @Override
@@ -243,6 +249,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
 
         }
         progressBar.setVisibility(View.GONE);
+        txtnoidung.setVisibility(View.GONE);
 
     }
     //Thanh toán momo
@@ -305,6 +312,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
                     SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
                     gioHangPreSenter.HandleAddHoaDon(simpleDateFormat.format(calendar.getTime()),diachi,hoten,sdt,spinner.getSelectedItem().toString(),tongtien,arrayList);
                     progressBar.setVisibility(View.GONE);
+                    txtnoidung.setVisibility(View.GONE);
 
 
                     String token = data.getStringExtra("data"); //Token response
@@ -323,6 +331,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
                     }
                 } else if(data.getIntExtra("status", -1) == 1) {
                     progressBar.setVisibility(View.GONE);
+                    txtnoidung.setVisibility(View.GONE);
                     String message = data.getStringExtra("message") != null?data.getStringExtra("message"):"Thất bại";
                     Log.d("Message Fail : ","message: " + "Get token " + data.getStringExtra("message"));
                 } else if(data.getIntExtra("status", -1) == 2) {

@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.appfood.View.Admin.ProductActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -44,8 +45,8 @@ import java.util.List;
 public class dangsanphamActivity extends AppCompatActivity {
     private static final int LIBRARY_PICKER = 12312;
     EditText edtNsx, edtTenSp, edtTien, edtBh, edtSl, edtType, edtMt;
-    ImageView imageView;
-    Button btnDm, btnDel, btnEdit;
+    ImageView imageView, imgBack;
+    Button btnDm, btnDel, btnEdit ;
     private Spinner spinerthongke;
     private List<String> list;
     FirebaseFirestore db;
@@ -123,6 +124,7 @@ public class dangsanphamActivity extends AppCompatActivity {
         btnDm = findViewById(R.id.btn_danhmuc);
         btnDel = findViewById(R.id.btn_delete);
         btnEdit = findViewById(R.id.btn_edit);
+        imgBack = findViewById(R.id.btn_add_back);
         btnDm.setOnClickListener(view -> spinerthongke.performClick());
         imageView.setOnClickListener(view -> {
             pickImage();
@@ -229,6 +231,14 @@ public class dangsanphamActivity extends AppCompatActivity {
                 });
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        });
+
+        // Quay ve
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ProductActivity.class));
             }
         });
     }
