@@ -35,10 +35,11 @@ public class SignInActivity  extends AppCompatActivity  implements UserView , Vi
     private void Init() {
         userPreSenter = new UserPreSenter(this);
         btndangnhap.setOnClickListener(this);
+
         btndangky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignInActivity.this,SignUpActivity.class));
+                startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
 
             }
         });
