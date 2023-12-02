@@ -92,7 +92,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
       //chức năng xóa sp trong giỏ hàng
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int pos = viewHolder.getAdapterPosition();
+                int pos = viewHolder.getBindingAdapterPosition();
                 AlertDialog.Builder buidler = new AlertDialog.Builder(CartActivity.this);
                 buidler.setMessage("Bạn có muôn xóa  sản phẩm "+arrayList.get(pos).getTensp());
                 buidler.setPositiveButton("OK", new DialogInterface.OnClickListener() {

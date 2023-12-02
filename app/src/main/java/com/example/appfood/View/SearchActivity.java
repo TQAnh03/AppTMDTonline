@@ -35,6 +35,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.view.View;
 import android.widget.SearchView;
 
 public class SearchActivity  extends AppCompatActivity implements SanPhamView {
@@ -55,6 +56,13 @@ public class SearchActivity  extends AppCompatActivity implements SanPhamView {
         Toolbar toolbar = findViewById(R.id.toolbarSearch);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         recyclerView = findViewById(R.id.recyclerviewSearch);
         searchView = findViewById(R.id.searchViewMain);
         searchView.clearFocus();
