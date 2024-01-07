@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Đăng nhập User"
+        android:text="Đăng Ký User"
         android:textColor="@color/black"
         android:textSize="30dp"
         />
@@ -111,6 +111,7 @@
         android:layout_height="0dp" />
 
     <TextView
+        android:id="@+id/txtSignin"
         android:textSize="16sp"
         android:layout_marginBottom="10dp"
         android:textColor="#E49116"

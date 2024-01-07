@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ public class SignUpActivity extends AppCompatActivity  implements UserView , Vie
     private Button btndangky;
     private EditText editemail,editpass,editpass_repeat;
     private UserPreSenter userPreSenter;
+    private TextView txtSignin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +34,12 @@ public class SignUpActivity extends AppCompatActivity  implements UserView , Vie
     private void Init() {
         userPreSenter = new UserPreSenter(this);
         btndangky.setOnClickListener(this);
-
+        txtSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+            }
+        });
     }
 
     private void InitWidget() {
@@ -40,6 +47,7 @@ public class SignUpActivity extends AppCompatActivity  implements UserView , Vie
         editemail=findViewById(R.id.editEmail);
         editpass = findViewById(R.id.editmatkhau);
         editpass_repeat = findViewById(R.id.editmatkhau_repeat);
+        txtSignin = findViewById(R.id.txtSignin);
     }
 
     @Override
@@ -70,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity  implements UserView , Vie
     public void OnAuthEmail() {
         FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
 
-        Toast.makeText(this, "Hãy vào gamil để xác thực tài khoản của bạn !", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Hãy vào gmail để xác thực tài khoản của bạn !", Toast.LENGTH_SHORT).show();
         finish();
     }
 

@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appfood.View.FragMent.FragMent_Bill;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.example.appfood.Adapter.GioHangAdapter;
 import com.example.appfood.Model.SanPhamModels;
@@ -142,7 +143,7 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
         tongtien = 0 ;
 
             for (SanPhamModels sanPhamModels : arrayList) {
-                tongtien += sanPhamModels.getGiatien()  * sanPhamModels.getSoluong();
+                tongtien += sanPhamModels.getGiatien() * sanPhamModels.getSoluong();
             }
 
 
@@ -173,7 +174,6 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
                                     dialog.cancel();break;
                                 case 1:
                                     AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEVELOPMENT);
-
                                     requestPayment();
                                     dialog.cancel();
                                     break;
@@ -225,9 +225,9 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
            Toast.makeText(CartActivity.this, "Thao tác thành công!", Toast.LENGTH_SHORT).show();
        }
         progressBar.setVisibility(View.GONE);
-       txtnoidung.setVisibility(View.GONE);
+        txtnoidung.setVisibility(View.GONE);
         sanPhamAdapter.notifyDataSetChanged();
-
+        startActivity(new Intent(getApplicationContext(), FragMent_Bill.class));
 
     }
 
@@ -304,20 +304,22 @@ public class CartActivity extends AppCompatActivity implements GioHangView {
             if(data != null) {
                 Log.d("CHECKED","checked3");
                 if(data.getIntExtra("status", -1) == 0) {
+
                     //TOKEN IS AVAILABLE
                     Log.d("Messagesss","message: " + "Get token " + data.getStringExtra("message"));
                     String checked = data.getStringExtra("message");
                     Log.d("CHECKED",checked);
                     Calendar calendar=Calendar.getInstance();
                     SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+
                     gioHangPreSenter.HandleAddHoaDon(simpleDateFormat.format(calendar.getTime()),diachi,hoten,sdt,spinner.getSelectedItem().toString(),tongtien,arrayList);
                     progressBar.setVisibility(View.GONE);
                     txtnoidung.setVisibility(View.GONE);
 
-
                     String token = data.getStringExtra("data"); //Token response
                     String phoneNumber = data.getStringExtra("phonenumber");
                     String env = data.getStringExtra("env");
+
                     if(env == null){
                         env = "app";
                     }
