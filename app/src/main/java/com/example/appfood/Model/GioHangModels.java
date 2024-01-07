@@ -58,8 +58,8 @@ public class GioHangModels {
                                  @Override
                                  public void onComplete(@NonNull Task<Void> task) {
                                      if(task.isSuccessful()){
-                                      callback.OnSucess();
-                                     }else{
+                                         callback.OnSucess();
+                                     }else {
                                          callback.OnFail();
                                      }
                                  }
@@ -84,7 +84,7 @@ public class GioHangModels {
             }
         });
     }
-    public  void HandlegetDataGioHang(){
+    public void HandlegetDataGioHang(){
         db.collection("GioHang").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("ALL").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
